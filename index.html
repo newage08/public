@@ -8,42 +8,35 @@
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
-      <h1>妄想タイムテーブル</h1>
-      <p>公式タイムテーブル風の空スロットに手動配置</p>
-    </div>
+    <h1 class="brand">妄想タイムテーブル</h1>
     <div class="controls">
       <label>フェス<select id="festival"></select></label>
       <label>年<select id="year"></select></label>
       <label>日<select id="dayFilter"></select></label>
-      <button id="exportImageBtn">画像出力</button>
+      <form id="quickAddForm" class="quickAddForm" autocomplete="off">
+        <input id="quickAddInput" type="text" placeholder="アーティストを追加" />
+        <button id="quickAddBtn" type="submit">追加</button>
+      </form>
+      <button id="exportImageBtn">画像</button>
     </div>
   </header>
 
   <main class="app">
-    <aside class="artistPane" id="poolDropZone">
-      <h2>アーティスト追加</h2>
-      <p class="sub">1行に1組入力。必要なら編集して追加</p>
-      <textarea id="lineupInput" rows="10" placeholder="Artist A&#10;Artist B&#10;Artist C"></textarea>
-      <div class="btnRow">
-        <button id="buildPoolBtn">アーティスト追加</button>
-        <button id="sampleBtn" class="ghost">プリセット再読込</button>
-        <button id="resetPlacementBtn" class="ghost">配置リセット</button>
-      </div>
-      <p id="message" class="message"></p>
-      <div id="pool" class="pool"></div>
-    </aside>
-
     <section class="boardPane">
       <div class="boardHead">
-        <h2 id="boardTitle">TIMETABLE</h2>
+        <h2 id="boardTitle">妄想タイムテーブル</h2>
         <div class="boardMeta">
           <div id="summary" class="summary"></div>
-          <a id="posterLink" class="posterLink" href="#" target="_blank" rel="noopener noreferrer">元ポスターを開く</a>
+          <a id="posterLink" class="posterLink" href="#" target="_blank" rel="noopener noreferrer">公式</a>
         </div>
       </div>
       <div id="board" class="board"></div>
     </section>
+
+    <aside class="poolPane" id="poolDropZone">
+      <div id="pool" class="pool"></div>
+      <p id="message" class="message"></p>
+    </aside>
   </main>
 
   <script src="script.js"></script>

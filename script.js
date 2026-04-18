@@ -1,57 +1,6 @@
 const STORAGE_KEY = "fesTimeBuilder_board_v8_mobile_timeedit_stageorder";
 const APP_NAME = "妄想タイムテーブル";
 
-const DEFAULT_STAGE_ORDER = {
-  summerSonic: ["Marine", "Beach", "Mountain", "Sonic", "Spotify Early Noise", "Pacific"]
-};
-
-const STAGE_META = {
-  summerSonic: {
-    Marine: { title: "MARINE STAGE", venue: "ZOZO MARINE STADIUM" },
-    Beach: { title: "BEACH STAGE", venue: "MAKUHARI BEACH" },
-    Mountain: { title: "MOUNTAIN STAGE", venue: "MAKUHARI MESSE No.1-2" },
-    Sonic: { title: "SONIC STAGE", venue: "MAKUHARI MESSE No.7" },
-    "Spotify Early Noise": { title: "SPOTIFY STAGE", subtitle: "[RADAR: Early Noise Special]", venue: "MAKUHARI MESSE No.6" },
-    Pacific: { title: "PACIFIC STAGE", venue: "MAKUHARI MESSE No.9" }
-  }
-};
-
-const STAGE_COLORS = {
-  summerSonic: {
-    Marine: "#2aa8d6",
-    Beach: "#b9b097",
-    Mountain: "#25a85b",
-    Sonic: "#eea31a",
-    "Spotify Early Noise": "#9ea3a9",
-    Pacific: "#e6a6bf"
-  },
-  fujiRock: {
-    "Green Stage": "#2f9e44",
-    "White Stage": "#f1f3f5",
-    "Red Marquee": "#e03131",
-    "Field of Heaven": "#0ca678",
-    "Gypsy Avalon": "#f08c00",
-    "Naeba Shokudou": "#7950f2",
-    "Pyramid Garden": "#1098ad",
-    "Palace Arena": "#e8590c"
-  }
-};
-
-const POSTER_LINKS = {
-  summerSonic: {
-    default: "https://www.summersonic.com/2025/en/tt/tokyo-day1/",
-    years: {
-      "2025": {
-        "Saturday 16th August": "https://www.summersonic.com/2025/en/tt/tokyo-day1/",
-        "Sunday 17th August": "https://www.summersonic.com/2025/en/tt/tokyo-day2/"
-      }
-    }
-  },
-  fujiRock: {
-    default: "https://25.fujirockfestival.com/"
-  }
-};
-
 const state = {
   festivals: null,
   festivalKey: "summerSonic",
@@ -76,10 +25,8 @@ const el = {
   festival: document.getElementById("festival"),
   year: document.getElementById("year"),
   dayFilter: document.getElementById("dayFilter"),
-  lineupInput: document.getElementById("lineupInput"),
-  buildPoolBtn: document.getElementById("buildPoolBtn"),
-  sampleBtn: document.getElementById("sampleBtn"),
-  resetPlacementBtn: document.getElementById("resetPlacementBtn"),
+  quickAddForm: document.getElementById("quickAddForm"),
+  quickAddInput: document.getElementById("quickAddInput"),
   message: document.getElementById("message"),
   summary: document.getElementById("summary"),
   boardTitle: document.getElementById("boardTitle"),
@@ -117,8 +64,22 @@ async function loadFestivals() {
 
   Object.values(festivals).forEach((festival) => {
     Object.values(festival.years).forEach((yearData) => {
+      if (!Array.isArray(yearData.stages)) {
+        yearData.stages = Object.keys(yearData.slotsMap || {});
+      }
       yearData.slots = expandSlots(yearData.slotsMap);
     });
+
+    if (!festival.stageMeta || typeof festival.stageMeta !== "object") {
+      festival.stageMeta = {};
+    }
+    if (!festival.stageColors || typeof festival.stageColors !== "object") {
+      festival.stageColors = {};
+    }
+    if (!Array.isArray(festival.stageOrder)) {
+      const firstYear = Object.values(festival.years)[0];
+      festival.stageOrder = Array.isArray(firstYear?.stages) ? [...firstYear.stages] : [];
+    }
   });
 
   state.festivals = festivals;
@@ -132,6 +93,11 @@ function getYearData() {
   return getFestival().years[state.yearKey];
 }
 
+function getFestivalStageOrder() {
+  const festivalOrder = getFestival().stageOrder;
+  return Array.isArray(festivalOrder) ? festivalOrder : [];
+}
+
 function getStageOrderKey() {
   return `${state.festivalKey}__${state.yearKey}`;
 }
@@ -139,9 +105,7 @@ function getStageOrderKey() {
 function getOrderedStages() {
   const key = getStageOrderKey();
   const base = getYearData().stages;
-  const preferred = Array.isArray(DEFAULT_STAGE_ORDER[state.festivalKey])
-    ? DEFAULT_STAGE_ORDER[state.festivalKey].filter((stage) => base.includes(stage))
-    : [];
+  const preferred = getFestivalStageOrder().filter((stage) => base.includes(stage));
   const defaultOrder = [...preferred, ...base.filter((stage) => !preferred.includes(stage))];
   const stored = Array.isArray(state.stageOrders[key]) ? state.stageOrders[key] : [];
   const filtered = stored.filter((stage) => base.includes(stage));
@@ -152,7 +116,7 @@ function getOrderedStages() {
 }
 
 function getStageColor(stage, index = 0) {
-  const festivalColors = STAGE_COLORS[state.festivalKey] || {};
+  const festivalColors = getFestival().stageColors || {};
   if (festivalColors[stage]) return festivalColors[stage];
 
   const fallback = ["#2f3c3b", "#1f6feb", "#2da44e", "#e5534b", "#a371f7", "#d29922", "#0ca678", "#e8590c"];
@@ -266,6 +230,10 @@ function parseArtists(raw) {
     .map((name, idx) => ({ id: `${Date.now()}_${idx}_${Math.random().toString(36).slice(2, 7)}`, name }));
 }
 
+function createArtist(name) {
+  return { id: `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`, name: String(name || "").trim() };
+}
+
 function setMessage(text) {
   el.message.textContent = text;
 }
@@ -340,7 +308,7 @@ function fillDayOptions() {
 }
 
 function getPosterLink() {
-  const festivalConfig = POSTER_LINKS[state.festivalKey];
+  const festivalConfig = getFestival().posterLinks;
   if (!festivalConfig) return "";
 
   const yearConfig = festivalConfig.years?.[state.yearKey];
@@ -1024,6 +992,12 @@ function renderBoard() {
     const laneBody = document.createElement("div");
     laneBody.className = "stageLaneBody";
     laneBody.style.height = `${bodyHeight}px`;
+    ticks.forEach((m) => {
+      const guide = document.createElement("div");
+      guide.className = "hourGuide";
+      guide.style.top = `${(m - timeline.minMinute) * pxPerMinute}px`;
+      laneBody.append(guide);
+    });
 
     const stageSlots = timeline.slots
       .filter((slot) => slot.stage === stage)
@@ -1037,7 +1011,7 @@ function renderBoard() {
       slotNode.className = "slot";
       slotNode.dataset.slotId = id;
       slotNode.style.top = `${(slot._startN - timeline.minMinute) * pxPerMinute}px`;
-      slotNode.style.height = `${Math.max(38, (slot._endN - slot._startN) * pxPerMinute)}px`;
+      slotNode.style.height = `${Math.max(42, (slot._endN - slot._startN) * pxPerMinute)}px`;
       slotNode.style.borderColor = hasArtist ? toRgba(stageColor, 0.72) : "#d9dee6";
       slotNode.style.background = hasArtist ? toRgba(stageColor, 0.9) : "#f3f5f8";
 
@@ -1054,6 +1028,7 @@ function renderBoard() {
 
       const body = document.createElement("div");
       body.className = "slotBody";
+      if (!assigned) body.classList.add("isEmpty");
 
       if (assigned) {
         const tag = makeTag(assigned, id);
@@ -1092,15 +1067,15 @@ function renderAll() {
 }
 
 function buildPoolFromInput() {
-  const artists = parseArtists(el.lineupInput.value);
-  if (artists.length === 0) {
-    setMessage("アーティスト名を1件以上入力して");
+  const name = String(el.quickAddInput.value || "").trim();
+  if (!name) {
+    setMessage("アーティスト名を入力して");
     return;
   }
 
-  state.pool = artists;
-  state.assignments = {};
-  setMessage(`アーティストを${artists.length}件追加`);
+  state.pool.push(createArtist(name));
+  el.quickAddInput.value = "";
+  setMessage("アーティストを追加");
   renderAll();
 }
 
@@ -1116,10 +1091,8 @@ function loadPresetCandidates(options = {}) {
         ? yearData.presetArtists
         : [];
 
-  el.lineupInput.value = presets.join("\n");
-
   if (rebuildPool) {
-    state.pool = parseArtists(el.lineupInput.value);
+    state.pool = presets.map((name) => createArtist(name));
     state.assignments = {};
     renderAll();
   }
@@ -1148,8 +1121,7 @@ function switchFestival(key) {
 function switchYear(key) {
   state.yearKey = key;
   fillDayOptions();
-  renderAll();
-  setMessage(`${state.yearKey}年のタイムスロットに切替`);
+  loadPresetCandidates({ rebuildPool: true, notice: true });
 }
 
 function saveStateSilently() {
@@ -1157,7 +1129,6 @@ function saveStateSilently() {
     festivalKey: state.festivalKey,
     yearKey: state.yearKey,
     dayFilter: state.dayFilter,
-    lineupInput: el.lineupInput.value,
     pool: state.pool,
     assignments: state.assignments,
     stageOrders: state.stageOrders,
@@ -1190,7 +1161,9 @@ function restoreStateIfExists() {
     state.assignments = parsed.assignments && typeof parsed.assignments === "object" ? parsed.assignments : {};
     state.stageOrders = parsed.stageOrders && typeof parsed.stageOrders === "object" ? parsed.stageOrders : {};
     state.slotOverrides = parsed.slotOverrides && typeof parsed.slotOverrides === "object" ? parsed.slotOverrides : {};
-    el.lineupInput.value = typeof parsed.lineupInput === "string" ? parsed.lineupInput : "";
+    if (state.pool.length === 0 && typeof parsed.lineupInput === "string" && parsed.lineupInput.trim()) {
+      state.pool = parseArtists(parsed.lineupInput);
+    }
 
     return true;
   } catch {
@@ -1199,9 +1172,9 @@ function restoreStateIfExists() {
 }
 
 function getStageMeta(stage) {
-  const data = STAGE_META[state.festivalKey]?.[stage];
+  const data = getFestival().stageMeta?.[stage];
   if (data) return data;
-  return { title: `${stage.toUpperCase()} STAGE`, venue: "" };
+  return { title: stage.toUpperCase(), venue: "" };
 }
 
 function drawWrappedCenterText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
@@ -1391,11 +1364,13 @@ function exportBoardImage() {
   ctx.fillStyle = "#697380";
   ctx.font = "10px 'Hiragino Sans', 'Yu Gothic', sans-serif";
   ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
   for (let m = timeline.minMinute; m <= timeline.maxMinute; m += 60) {
     const y = bodyTop + (m - timeline.minMinute) * pxPerMinute;
-    ctx.fillText(formatClock(m), leftAxisX, y + 3);
-    ctx.fillText(formatClock(m), rightAxisX, y + 3);
+    ctx.fillText(formatClock(m), leftAxisX, y);
+    ctx.fillText(formatClock(m), rightAxisX, y);
   }
+  ctx.textBaseline = "alphabetic";
 
   canvas.toBlob((blob) => {
     if (!blob) {
@@ -1422,9 +1397,10 @@ function attachEvents() {
     renderAll();
   });
 
-  el.buildPoolBtn.addEventListener("click", buildPoolFromInput);
-  el.sampleBtn.addEventListener("click", () => loadPresetCandidates({ rebuildPool: true, notice: true }));
-  el.resetPlacementBtn.addEventListener("click", resetPlacement);
+  el.quickAddForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    buildPoolFromInput();
+  });
   el.exportImageBtn.addEventListener("click", exportBoardImage);
 
   attachPoolDropEvents();
@@ -1446,7 +1422,7 @@ async function init() {
     }
     attachEvents();
     renderAll();
-    setMessage(restored ? "自動保存データを復元した" : "実タイムテーブル枠と出演者プリセットを読み込み完了");
+    setMessage(restored ? "復元完了" : "準備完了");
   } catch (e) {
     setMessage("タイムテーブル読み込みに失敗");
     console.error(e);
