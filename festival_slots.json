@@ -1,0 +1,1823 @@
+{
+  "summerSonic": {
+    "name": "SUMMER SONIC TOKYO",
+    "years": {
+      "2025": {
+        "days": [
+          "Saturday 16th August",
+          "Sunday 17th August"
+        ],
+        "stages": [
+          "Mountain",
+          "Sonic",
+          "Pacific",
+          "Marine",
+          "Beach",
+          "Spotify Early Noise"
+        ],
+        "slotsMap": {
+          "Mountain": {
+            "Saturday 16th August": [
+              [
+                "11:30",
+                "12:05"
+              ],
+              [
+                "12:35",
+                "13:15"
+              ],
+              [
+                "13:45",
+                "14:25"
+              ],
+              [
+                "14:55",
+                "15:35"
+              ],
+              [
+                "16:05",
+                "16:45"
+              ],
+              [
+                "17:15",
+                "18:15"
+              ],
+              [
+                "18:50",
+                "19:50"
+              ],
+              [
+                "20:25",
+                "21:35"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "11:00",
+                "11:40"
+              ],
+              [
+                "12:10",
+                "12:45"
+              ],
+              [
+                "13:15",
+                "13:50"
+              ],
+              [
+                "14:25",
+                "15:05"
+              ],
+              [
+                "15:40",
+                "16:25"
+              ],
+              [
+                "17:00",
+                "17:45"
+              ],
+              [
+                "18:20",
+                "19:10"
+              ],
+              [
+                "19:50",
+                "21:00"
+              ]
+            ]
+          },
+          "Sonic": {
+            "Saturday 16th August": [
+              [
+                "11:00",
+                "11:20"
+              ],
+              [
+                "11:50",
+                "12:20"
+              ],
+              [
+                "12:50",
+                "13:20"
+              ],
+              [
+                "13:50",
+                "14:30"
+              ],
+              [
+                "15:00",
+                "15:40"
+              ],
+              [
+                "16:10",
+                "16:55"
+              ],
+              [
+                "17:25",
+                "18:25"
+              ],
+              [
+                "18:55",
+                "19:45"
+              ],
+              [
+                "20:15",
+                "21:25"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "11:00",
+                "11:20"
+              ],
+              [
+                "11:50",
+                "12:20"
+              ],
+              [
+                "12:50",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "14:40"
+              ],
+              [
+                "15:15",
+                "15:55"
+              ],
+              [
+                "16:25",
+                "17:10"
+              ],
+              [
+                "17:40",
+                "18:25"
+              ],
+              [
+                "18:55",
+                "19:40"
+              ],
+              [
+                "20:20",
+                "21:30"
+              ]
+            ]
+          },
+          "Pacific": {
+            "Saturday 16th August": [
+              [
+                "10:30",
+                "11:00"
+              ],
+              [
+                "11:20",
+                "11:50"
+              ],
+              [
+                "12:20",
+                "12:50"
+              ],
+              [
+                "13:20",
+                "14:00"
+              ],
+              [
+                "14:30",
+                "14:50"
+              ],
+              [
+                "15:20",
+                "16:05"
+              ],
+              [
+                "16:35",
+                "17:15"
+              ],
+              [
+                "17:45",
+                "18:35"
+              ],
+              [
+                "19:10",
+                "20:00"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "10:40",
+                "11:00"
+              ],
+              [
+                "11:20",
+                "11:50"
+              ],
+              [
+                "12:20",
+                "12:55"
+              ],
+              [
+                "13:25",
+                "14:00"
+              ],
+              [
+                "14:30",
+                "15:10"
+              ],
+              [
+                "15:40",
+                "16:20"
+              ],
+              [
+                "16:50",
+                "17:30"
+              ],
+              [
+                "18:00",
+                "18:45"
+              ],
+              [
+                "19:15",
+                "19:55"
+              ]
+            ]
+          },
+          "Marine": {
+            "Saturday 16th August": [
+              [
+                "11:00",
+                "11:40"
+              ],
+              [
+                "12:10",
+                "12:50"
+              ],
+              [
+                "13:20",
+                "14:00"
+              ],
+              [
+                "14:35",
+                "15:20"
+              ],
+              [
+                "16:05",
+                "16:50"
+              ],
+              [
+                "17:40",
+                "18:40"
+              ],
+              [
+                "19:25",
+                "20:55"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "11:00",
+                "11:40"
+              ],
+              [
+                "12:15",
+                "12:55"
+              ],
+              [
+                "13:25",
+                "14:05"
+              ],
+              [
+                "14:35",
+                "15:25"
+              ],
+              [
+                "16:05",
+                "17:15"
+              ],
+              [
+                "17:55",
+                "18:45"
+              ],
+              [
+                "19:30",
+                "20:45"
+              ]
+            ]
+          },
+          "Beach": {
+            "Saturday 16th August": [
+              [
+                "13:55",
+                "14:25"
+              ],
+              [
+                "14:55",
+                "15:25"
+              ],
+              [
+                "15:55",
+                "16:35"
+              ],
+              [
+                "17:05",
+                "17:45"
+              ],
+              [
+                "18:15",
+                "18:55"
+              ],
+              [
+                "19:35",
+                "20:25"
+              ],
+              [
+                "20:55",
+                "21:45"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "13:00",
+                "13:40"
+              ],
+              [
+                "14:10",
+                "14:50"
+              ],
+              [
+                "15:20",
+                "16:00"
+              ],
+              [
+                "16:30",
+                "17:10"
+              ],
+              [
+                "17:40",
+                "18:20"
+              ],
+              [
+                "18:50",
+                "19:40"
+              ],
+              [
+                "20:10",
+                "21:25"
+              ]
+            ]
+          },
+          "Spotify Early Noise": {
+            "Saturday 16th August": [
+              [
+                "11:15",
+                "11:35"
+              ],
+              [
+                "12:05",
+                "12:25"
+              ],
+              [
+                "12:55",
+                "13:20"
+              ],
+              [
+                "13:50",
+                "14:20"
+              ],
+              [
+                "14:50",
+                "15:20"
+              ],
+              [
+                "15:50",
+                "16:20"
+              ],
+              [
+                "16:50",
+                "17:30"
+              ],
+              [
+                "18:00",
+                "18:30"
+              ],
+              [
+                "19:00",
+                "19:30"
+              ],
+              [
+                "20:00",
+                "20:30"
+              ]
+            ],
+            "Sunday 17th August": [
+              [
+                "10:05",
+                "10:25"
+              ],
+              [
+                "10:55",
+                "11:15"
+              ],
+              [
+                "11:45",
+                "12:10"
+              ],
+              [
+                "12:40",
+                "13:10"
+              ],
+              [
+                "13:45",
+                "14:15"
+              ],
+              [
+                "14:50",
+                "15:20"
+              ],
+              [
+                "15:55",
+                "16:25"
+              ],
+              [
+                "17:05",
+                "17:35"
+              ],
+              [
+                "18:00",
+                "18:30"
+              ],
+              [
+                "19:10",
+                "20:30"
+              ]
+            ]
+          }
+        },
+        "presetArtists": [
+          "Perfume",
+          "The Prodigy",
+          "Gesaffelstain",
+          "Denki Groove",
+          "Common",
+          "Kyari Pamyu Pamyu",
+          "2hollis",
+          "Floating Points",
+          "Tohji",
+          "Kikuo",
+          "MFS",
+          "SKRYU",
+          "THE SPELLBOUND ✕ BOOM BOOM SATELLITES",
+          "Minna-no-Kimochi",
+          "SixTONES",
+          "LiSA",
+          "i-dle",
+          "Chase Atlantic",
+          "Yungblud",
+          "Official HIGE Dandism",
+          "Fall Out Boy",
+          "Kuroyume",
+          "chilldspot",
+          "Hot Milk",
+          "THE RAMPAGE",
+          "HYDE",
+          "Porter Robinson",
+          "BABYMETAL",
+          "紫 今",
+          "go!go!vanillas",
+          "Wallice",
+          "Monobloc",
+          "amazarashi",
+          "Bloc Party",
+          "DOMi & JD BECK",
+          "Beabadoobee",
+          "tofubeats",
+          "TERIYAKI BOYZ",
+          "m-flo",
+          "Itabashi Brothers",
+          "DONGROSSO",
+          "N²",
+          "f5ve",
+          "BANVOX",
+          "PUSHIM",
+          "Schadaraparr",
+          "Ulfuls",
+          "Digable Planets",
+          "Jimmy Jam & Terry Lewis",
+          "AI & JUJU",
+          "KickFlip",
+          "Ave Mujica",
+          "izna",
+          "Psychic Fever",
+          "HANA",
+          "BUS",
+          "WOODZ",
+          "BAND-MAID",
+          "THE ROSE",
+          "OddRe:",
+          "Lavt",
+          "PAS TASTA",
+          "CHO CO PA CO CHO CO QUIN QUIN",
+          "reina",
+          "Brandy Senki",
+          "RetroRiron",
+          "Chilli Beans.",
+          "JO1",
+          "BE:FIRST",
+          "J Balvin",
+          "Camila Cabello",
+          "aespa",
+          "Alicia Keys",
+          "INI",
+          "MAZZEL",
+          "KATSEYE",
+          "Tinashe",
+          "AI",
+          "Jorja Smith",
+          "優里",
+          "21 Savage",
+          "Ai Tomioka",
+          "FRUITS ZIPPER",
+          "Nessa Barrett",
+          "sombr",
+          "elijah woods",
+          "LANA",
+          "Infinity Song",
+          "JVKE",
+          "Def Tech",
+          "iri",
+          "RIP SLYME",
+          "Perro Negro",
+          "Bomba Estéreo",
+          "Tainy",
+          "Feid",
+          "B&ZAI",
+          "Furui Riho",
+          "Omoinotake",
+          "Jeff Satur",
+          "Da-iCE",
+          "Lee Youngji",
+          "BMSG POSSE",
+          "NiziU",
+          "板歯目",
+          "ziproom",
+          "Billyrrom",
+          "AKASAKI",
+          "muque",
+          "Mega Shinnosuke",
+          "Kaneee",
+          "swetty",
+          "Elle Teresa",
+          "JP THE WAVY"
+        ]
+      },
+      "2024": {
+        "days": [
+          "Saturday 17th August",
+          "Sunday 18th August"
+        ],
+        "stages": [
+          "Mountain",
+          "Sonic",
+          "Pacific",
+          "Marine",
+          "Beach",
+          "Spotify Early Noise"
+        ],
+        "slotsMap": {
+          "Mountain": {
+            "Saturday 17th August": [
+              [
+                "11:25",
+                "12:00"
+              ],
+              [
+                "12:30",
+                "13:10"
+              ],
+              [
+                "13:40",
+                "14:20"
+              ],
+              [
+                "14:50",
+                "15:30"
+              ],
+              [
+                "16:00",
+                "16:45"
+              ],
+              [
+                "17:15",
+                "18:05"
+              ],
+              [
+                "18:35",
+                "19:35"
+              ],
+              [
+                "20:15",
+                "21:25"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "11:30",
+                "12:05"
+              ],
+              [
+                "12:35",
+                "13:10"
+              ],
+              [
+                "13:40",
+                "14:20"
+              ],
+              [
+                "14:50",
+                "15:30"
+              ],
+              [
+                "16:05",
+                "16:50"
+              ],
+              [
+                "17:20",
+                "18:00"
+              ],
+              [
+                "18:30",
+                "19:20"
+              ],
+              [
+                "20:00",
+                "21:10"
+              ]
+            ]
+          },
+          "Sonic": {
+            "Saturday 17th August": [
+              [
+                "10:15",
+                "10:35"
+              ],
+              [
+                "10:55",
+                "11:20"
+              ],
+              [
+                "11:50",
+                "12:30"
+              ],
+              [
+                "13:00",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "14:40"
+              ],
+              [
+                "15:10",
+                "15:50"
+              ],
+              [
+                "16:20",
+                "17:05"
+              ],
+              [
+                "17:35",
+                "18:20"
+              ],
+              [
+                "18:50",
+                "19:40"
+              ],
+              [
+                "20:10",
+                "21:20"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "10:15",
+                "10:35"
+              ],
+              [
+                "10:55",
+                "11:15"
+              ],
+              [
+                "11:50",
+                "12:20"
+              ],
+              [
+                "12:50",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "14:40"
+              ],
+              [
+                "15:10",
+                "15:50"
+              ],
+              [
+                "16:20",
+                "17:05"
+              ],
+              [
+                "17:35",
+                "18:20"
+              ],
+              [
+                "18:50",
+                "19:40"
+              ],
+              [
+                "20:20",
+                "21:30"
+              ]
+            ]
+          },
+          "Pacific": {
+            "Saturday 17th August": [
+              [
+                "10:35",
+                "10:55"
+              ],
+              [
+                "11:25",
+                "11:50"
+              ],
+              [
+                "12:20",
+                "12:55"
+              ],
+              [
+                "13:25",
+                "14:00"
+              ],
+              [
+                "14:30",
+                "15:05"
+              ],
+              [
+                "15:35",
+                "16:15"
+              ],
+              [
+                "16:45",
+                "17:20"
+              ],
+              [
+                "17:50",
+                "18:35"
+              ],
+              [
+                "19:10",
+                "20:00"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "10:35",
+                "10:55"
+              ],
+              [
+                "11:25",
+                "11:50"
+              ],
+              [
+                "12:20",
+                "12:55"
+              ],
+              [
+                "13:25",
+                "14:00"
+              ],
+              [
+                "14:30",
+                "15:05"
+              ],
+              [
+                "15:35",
+                "16:15"
+              ],
+              [
+                "16:45",
+                "17:25"
+              ],
+              [
+                "17:55",
+                "18:40"
+              ],
+              [
+                "19:10",
+                "19:50"
+              ]
+            ]
+          },
+          "Marine": {
+            "Saturday 17th August": [
+              [
+                "11:00",
+                "11:40"
+              ],
+              [
+                "12:10",
+                "12:50"
+              ],
+              [
+                "13:25",
+                "14:05"
+              ],
+              [
+                "14:40",
+                "15:25"
+              ],
+              [
+                "16:05",
+                "17:05"
+              ],
+              [
+                "17:40",
+                "18:40"
+              ],
+              [
+                "19:25",
+                "20:55"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "11:00",
+                "11:40"
+              ],
+              [
+                "12:10",
+                "12:50"
+              ],
+              [
+                "13:25",
+                "14:05"
+              ],
+              [
+                "14:40",
+                "15:25"
+              ],
+              [
+                "16:00",
+                "16:50"
+              ],
+              [
+                "17:25",
+                "18:35"
+              ],
+              [
+                "19:20",
+                "21:00"
+              ]
+            ]
+          },
+          "Beach": {
+            "Saturday 17th August": [
+              [
+                "13:45",
+                "14:15"
+              ],
+              [
+                "14:55",
+                "15:25"
+              ],
+              [
+                "15:55",
+                "16:35"
+              ],
+              [
+                "17:05",
+                "17:45"
+              ],
+              [
+                "18:15",
+                "18:55"
+              ],
+              [
+                "19:25",
+                "20:10"
+              ],
+              [
+                "20:40",
+                "21:30"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "13:45",
+                "14:15"
+              ],
+              [
+                "14:45",
+                "15:15"
+              ],
+              [
+                "15:45",
+                "16:25"
+              ],
+              [
+                "16:55",
+                "17:35"
+              ],
+              [
+                "18:05",
+                "18:50"
+              ],
+              [
+                "19:20",
+                "20:05"
+              ],
+              [
+                "20:35",
+                "21:05"
+              ]
+            ]
+          },
+          "Spotify Early Noise": {
+            "Saturday 17th August": [
+              [
+                "10:15",
+                "10:35"
+              ],
+              [
+                "11:05",
+                "11:25"
+              ],
+              [
+                "11:55",
+                "12:20"
+              ],
+              [
+                "12:50",
+                "13:20"
+              ],
+              [
+                "13:50",
+                "14:20"
+              ],
+              [
+                "14:55",
+                "15:25"
+              ],
+              [
+                "16:05",
+                "16:35"
+              ],
+              [
+                "17:10",
+                "17:40"
+              ],
+              [
+                "18:10",
+                "18:40"
+              ],
+              [
+                "18:40",
+                "19:10"
+              ],
+              [
+                "19:10",
+                "19:40"
+              ]
+            ],
+            "Sunday 18th August": [
+              [
+                "10:15",
+                "10:35"
+              ],
+              [
+                "11:05",
+                "11:25"
+              ],
+              [
+                "11:55",
+                "12:20"
+              ],
+              [
+                "12:50",
+                "13:20"
+              ],
+              [
+                "13:55",
+                "14:25"
+              ],
+              [
+                "15:00",
+                "15:30"
+              ],
+              [
+                "16:05",
+                "16:35"
+              ],
+              [
+                "17:15",
+                "17:45"
+              ],
+              [
+                "18:25",
+                "18:55"
+              ],
+              [
+                "19:55",
+                "20:25"
+              ]
+            ]
+          }
+        },
+        "presetArtists": [
+          "Perfume",
+          "The Prodigy",
+          "Gesaffelstain",
+          "Denki Groove",
+          "Common",
+          "Kyari Pamyu Pamyu",
+          "2hollis",
+          "Floating Points",
+          "Tohji",
+          "Kikuo",
+          "MFS",
+          "SKRYU",
+          "THE SPELLBOUND ✕ BOOM BOOM SATELLITES",
+          "Minna-no-Kimochi",
+          "SixTONES",
+          "LiSA",
+          "i-dle",
+          "Chase Atlantic",
+          "Yungblud",
+          "Official HIGE Dandism",
+          "Fall Out Boy",
+          "Kuroyume",
+          "chilldspot",
+          "Hot Milk",
+          "THE RAMPAGE",
+          "HYDE",
+          "Porter Robinson",
+          "BABYMETAL",
+          "紫 今",
+          "go!go!vanillas",
+          "Wallice",
+          "Monobloc",
+          "amazarashi",
+          "Bloc Party",
+          "DOMi & JD BECK",
+          "Beabadoobee",
+          "tofubeats",
+          "TERIYAKI BOYZ",
+          "m-flo",
+          "Itabashi Brothers",
+          "DONGROSSO",
+          "N²",
+          "f5ve",
+          "BANVOX",
+          "PUSHIM",
+          "Schadaraparr",
+          "Ulfuls",
+          "Digable Planets",
+          "Jimmy Jam & Terry Lewis",
+          "AI & JUJU",
+          "KickFlip",
+          "Ave Mujica",
+          "izna",
+          "Psychic Fever",
+          "HANA",
+          "BUS",
+          "WOODZ",
+          "BAND-MAID",
+          "THE ROSE",
+          "OddRe:",
+          "Lavt",
+          "PAS TASTA",
+          "CHO CO PA CO CHO CO QUIN QUIN",
+          "reina",
+          "Brandy Senki",
+          "RetroRiron",
+          "Chilli Beans.",
+          "JO1",
+          "BE:FIRST",
+          "J Balvin",
+          "Camila Cabello",
+          "aespa",
+          "Alicia Keys",
+          "INI",
+          "MAZZEL",
+          "KATSEYE",
+          "Tinashe",
+          "AI",
+          "Jorja Smith",
+          "優里",
+          "21 Savage",
+          "Ai Tomioka",
+          "FRUITS ZIPPER",
+          "Nessa Barrett",
+          "sombr",
+          "elijah woods",
+          "LANA",
+          "Infinity Song",
+          "JVKE",
+          "Def Tech",
+          "iri",
+          "RIP SLYME",
+          "Perro Negro",
+          "Bomba Estéreo",
+          "Tainy",
+          "Feid",
+          "B&ZAI",
+          "Furui Riho",
+          "Omoinotake",
+          "Jeff Satur",
+          "Da-iCE",
+          "Lee Youngji",
+          "BMSG POSSE",
+          "NiziU",
+          "板歯目",
+          "ziproom",
+          "Billyrrom",
+          "AKASAKI",
+          "muque",
+          "Mega Shinnosuke",
+          "Kaneee",
+          "swetty",
+          "Elle Teresa",
+          "JP THE WAVY"
+        ]
+      }
+    },
+    "sampleArtists": [
+      "THE STROKES",
+      "BUMP OF CHICKEN",
+      "JENNIE",
+      "FKA TWIGS",
+      "KASABIAN",
+      "KESHI",
+      "アイナ・ジ・エンド",
+      "AUDREY NUNA",
+      "BABYMONSTER",
+      "CARDINALS",
+      "CHLOE QISHA",
+      "DERMOT KENNEDY",
+      "FLORENCE ROAD",
+      "HOLLY HUMBERSTONE",
+      "JADE",
+      "KODALINE",
+      "マカロニえんぴつ",
+      "PiXXiE",
+      "WISP",
+      "ZEBRAHEAD",
+      "QUEEN BEE",
+      "Ado",
+      "DAVID BYRNE",
+      "ALEX WARREN",
+      "BE:FIRST",
+      "sakanaction",
+      "STEVE LACY",
+      "SUEDE",
+      "Cornelius",
+      "DESTIN CONRAD",
+      "ELMIENE",
+      "FATHER OF PEACE",
+      "GOOD NEIGHBOURS",
+      "Hitsujibungaku",
+      "JON SPENCER",
+      "MAZZEL",
+      "MIDNIGHT TIL MORNING",
+      "PRETTY BLEAK",
+      "Saucy Dog",
+      "SB19",
+      "VIAGRA BOYS",
+      "CARÍN LEÓN",
+      "LATIN MAFIA",
+      "PALOMA MORPHY",
+      "L’Arc-en-Ciel",
+      "JAMIROQUAI",
+      "BABYMETAL",
+      "LE SSERAFIM",
+      "mgk",
+      "PENTATONIX",
+      "Suchmos",
+      "Ave Mujica",
+      "BAND-MAID",
+      "BOY SODA",
+      "Chilli Beans.",
+      ".ENDRECHERI.",
+      "TATSUYA KITANI",
+      "NECTAR WOODE",
+      "PENDULUM",
+      "SEKOU",
+      "SOUTH ARCADE",
+      "THE WARNING"
+    ],
+    "presetArtists2026": [
+      "THE STROKES",
+      "BUMP OF CHICKEN",
+      "JENNIE",
+      "FKA TWIGS",
+      "KASABIAN",
+      "KESHI",
+      "アイナ・ジ・エンド",
+      "AUDREY NUNA",
+      "BABYMONSTER",
+      "CARDINALS",
+      "CHLOE QISHA",
+      "DERMOT KENNEDY",
+      "FLORENCE ROAD",
+      "HOLLY HUMBERSTONE",
+      "JADE",
+      "KODALINE",
+      "マカロニえんぴつ",
+      "PiXXiE",
+      "WISP",
+      "ZEBRAHEAD",
+      "QUEEN BEE",
+      "Ado",
+      "DAVID BYRNE",
+      "ALEX WARREN",
+      "BE:FIRST",
+      "sakanaction",
+      "STEVE LACY",
+      "SUEDE",
+      "Cornelius",
+      "DESTIN CONRAD",
+      "ELMIENE",
+      "FATHER OF PEACE",
+      "GOOD NEIGHBOURS",
+      "Hitsujibungaku",
+      "JON SPENCER",
+      "MAZZEL",
+      "MIDNIGHT TIL MORNING",
+      "PRETTY BLEAK",
+      "Saucy Dog",
+      "SB19",
+      "VIAGRA BOYS",
+      "CARÍN LEÓN",
+      "LATIN MAFIA",
+      "PALOMA MORPHY",
+      "L’Arc-en-Ciel",
+      "JAMIROQUAI",
+      "BABYMETAL",
+      "LE SSERAFIM",
+      "mgk",
+      "PENTATONIX",
+      "Suchmos",
+      "Ave Mujica",
+      "BAND-MAID",
+      "BOY SODA",
+      "Chilli Beans.",
+      ".ENDRECHERI.",
+      "TATSUYA KITANI",
+      "NECTAR WOODE",
+      "PENDULUM",
+      "SEKOU",
+      "SOUTH ARCADE",
+      "THE WARNING"
+    ]
+  },
+  "fujiRock": {
+    "name": "FUJI ROCK FESTIVAL",
+    "years": {
+      "2025": {
+        "days": [
+          "Friday 25th July",
+          "Saturday 26th July",
+          "Sunday 27th July"
+        ],
+        "stages": [
+          "Green Stage",
+          "White Stage",
+          "Red Marquee",
+          "Field of Heaven"
+        ],
+        "slotsMap": {
+          "Green Stage": {
+            "Friday 25th July": [
+              [
+                "11:00",
+                "12:00"
+              ],
+              [
+                "13:00",
+                "14:00"
+              ],
+              [
+                "15:00",
+                "16:00"
+              ],
+              [
+                "17:00",
+                "18:00"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:10",
+                "22:40"
+              ]
+            ],
+            "Saturday 26th July": [
+              [
+                "11:00",
+                "12:00"
+              ],
+              [
+                "13:00",
+                "14:00"
+              ],
+              [
+                "15:00",
+                "16:05"
+              ],
+              [
+                "17:00",
+                "18:00"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:10",
+                "22:40"
+              ]
+            ],
+            "Sunday 27th July": [
+              [
+                "11:00",
+                "12:00"
+              ],
+              [
+                "13:00",
+                "14:00"
+              ],
+              [
+                "15:00",
+                "16:00"
+              ],
+              [
+                "17:00",
+                "18:00"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:10",
+                "22:40"
+              ]
+            ]
+          },
+          "White Stage": {
+            "Friday 25th July": [
+              [
+                "12:10",
+                "13:00"
+              ],
+              [
+                "14:00",
+                "14:50"
+              ],
+              [
+                "15:50",
+                "16:50"
+              ],
+              [
+                "17:40",
+                "18:40"
+              ],
+              [
+                "19:40",
+                "20:40"
+              ],
+              [
+                "22:00",
+                "23:30"
+              ]
+            ],
+            "Saturday 26th July": [
+              [
+                "12:10",
+                "13:00"
+              ],
+              [
+                "14:00",
+                "15:00"
+              ],
+              [
+                "15:50",
+                "16:50"
+              ],
+              [
+                "17:40",
+                "18:40"
+              ],
+              [
+                "19:50",
+                "20:50"
+              ],
+              [
+                "22:00",
+                "23:30"
+              ]
+            ],
+            "Sunday 27th July": [
+              [
+                "12:30",
+                "13:20"
+              ],
+              [
+                "14:20",
+                "15:20"
+              ],
+              [
+                "16:15",
+                "17:15"
+              ],
+              [
+                "18:20",
+                "19:20"
+              ],
+              [
+                "20:10",
+                "21:10"
+              ],
+              [
+                "22:20",
+                "23:50"
+              ]
+            ]
+          },
+          "Red Marquee": {
+            "Friday 25th July": [
+              [
+                "00:45",
+                "01:45"
+              ],
+              [
+                "02:00",
+                "03:00"
+              ],
+              [
+                "03:00",
+                "05:00"
+              ],
+              [
+                "11:30",
+                "12:10"
+              ],
+              [
+                "12:40",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "15:00"
+              ],
+              [
+                "16:00",
+                "17:00"
+              ],
+              [
+                "18:00",
+                "19:00"
+              ],
+              [
+                "20:10",
+                "21:10"
+              ],
+              [
+                "23:30",
+                "00:30"
+              ]
+            ],
+            "Saturday 26th July": [
+              [
+                "00:40",
+                "01:40"
+              ],
+              [
+                "01:50",
+                "02:40"
+              ],
+              [
+                "02:45",
+                "03:50"
+              ],
+              [
+                "04:00",
+                "05:00"
+              ],
+              [
+                "10:20",
+                "11:00"
+              ],
+              [
+                "11:30",
+                "12:10"
+              ],
+              [
+                "12:40",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "15:00"
+              ],
+              [
+                "16:00",
+                "17:00"
+              ],
+              [
+                "18:00",
+                "19:00"
+              ],
+              [
+                "20:10",
+                "21:10"
+              ],
+              [
+                "23:30",
+                "00:30"
+              ]
+            ],
+            "Sunday 27th July": [
+              [
+                "00:20",
+                "01:20"
+              ],
+              [
+                "01:30",
+                "02:30"
+              ],
+              [
+                "02:35",
+                "03:25"
+              ],
+              [
+                "03:30",
+                "05:00"
+              ],
+              [
+                "10:20",
+                "11:00"
+              ],
+              [
+                "11:30",
+                "12:10"
+              ],
+              [
+                "12:40",
+                "13:30"
+              ],
+              [
+                "14:00",
+                "15:00"
+              ],
+              [
+                "16:00",
+                "17:00"
+              ],
+              [
+                "18:00",
+                "19:00"
+              ],
+              [
+                "20:10",
+                "21:10"
+              ],
+              [
+                "23:30",
+                "00:15"
+              ]
+            ]
+          },
+          "Field of Heaven": {
+            "Friday 25th July": [
+              [
+                "11:30",
+                "12:20"
+              ],
+              [
+                "13:20",
+                "14:20"
+              ],
+              [
+                "15:10",
+                "16:10"
+              ],
+              [
+                "17:10",
+                "18:10"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:00",
+                "22:30"
+              ]
+            ],
+            "Saturday 26th July": [
+              [
+                "11:30",
+                "12:20"
+              ],
+              [
+                "13:20",
+                "14:20"
+              ],
+              [
+                "15:10",
+                "16:10"
+              ],
+              [
+                "17:10",
+                "18:10"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:00",
+                "22:30"
+              ]
+            ],
+            "Sunday 27th July": [
+              [
+                "11:30",
+                "12:20"
+              ],
+              [
+                "13:20",
+                "14:20"
+              ],
+              [
+                "15:10",
+                "16:10"
+              ],
+              [
+                "17:10",
+                "18:10"
+              ],
+              [
+                "19:00",
+                "20:10"
+              ],
+              [
+                "21:00",
+                "22:30"
+              ]
+            ]
+          }
+        },
+        "presetArtists": [
+          "US",
+          "Route 17 Rock 'n' Roll Orchestra",
+          "Brahman",
+          "Hyukoh & Sunset Rollercoaster",
+          "Vaundy",
+          "Fred Again..",
+          "おとぼけビ〜バ〜 /Otoboke Beaver",
+          "Ecca Vandal",
+          "Mdou Moctar",
+          "Miyavi",
+          "OK Go",
+          "Suchmos",
+          "Kurayamisaka",
+          "Tomoo",
+          "Marcin",
+          "青葉市子/Ichiko Aoba",
+          "Perfume Genius",
+          "Tycho",
+          "坂本慎太郎/Shintaro Sakamoto",
+          "Kiasmos",
+          "Joy (Anonymous)",
+          "Hiroko Yamamura",
+          "トリプルファイヤー",
+          "Kirinji",
+          "Answer To Remember",
+          "Parlor Greens",
+          "Maya Delilah",
+          "Ezra Collective",
+          "Ca7riel & Paco Amoroso",
+          "君島大空 合奏形態",
+          "Stuts (band set)",
+          "James Blake",
+          "ヤマシタ タツロウ/Tatsuro Yamashita",
+          "Vulfpeck",
+          "Fermin Muguruza",
+          "Balming Tiger",
+          "Faye Webster",
+          "JJJ",
+          "Barry Can't Swim",
+          "Four Tet",
+          "Downy",
+          "JoOji",
+          "リコンデンセツ/RIKONDENSETSU",
+          "Yhwh Nailgun",
+          "Newdad",
+          "Ginger Root",
+          "サンボマスター/SAMBOMASTER",
+          "Confidence Man",
+          "Night Tempo",
+          "Jane Remover",
+          "Jyoty",
+          "パソコン音楽クラブ/Pasocom Music Club",
+          "Mei Ehara",
+          "The Panturas",
+          "踊ってばかりの国/ODOTTEBAKARINOKUNI",
+          "The Ska Flames",
+          "African Head Charge",
+          "Ego-Wrappin'",
+          "Red Hot Chilli Pipers",
+          "モリヤマ ナオタロウ/Naotaro Moriyama",
+          "Creepy Nuts",
+          "Little Simz",
+          "Radwimps",
+          "Vampire Weekend",
+          "Mono No Aware",
+          "Silica Gel",
+          "佐野元春 & The Coyote Band",
+          "Royel Otis",
+          "羊文学/Sheep Literature",
+          "Haim",
+          "DYGL",
+          "T字路s",
+          "Mei Semones",
+          "マラシィ/Marasy",
+          "English Teacher",
+          "Kanekoayano",
+          "The Hives",
+          "勢喜遊 & Yohji Igarashi",
+          "Ovall",
+          "Nujabes Metaphorical Ensemble",
+          "Atsuo The Pineapple Donkey",
+          "Fullhouse",
+          "She Her Her Hers",
+          "吾妻光良 & The Swinging Boppers",
+          "Grace Bowers & The Hodge Podge",
+          "Jake Shimabukuro Band",
+          "Robert Randolph",
+          "Galactic"
+        ]
+      }
+    },
+    "sampleArtists": [
+      "The xx",
+      "KHRUANGBIN",
+      "MASSIVE ATTACK",
+      "ASIAN KUNG-FU GENERATION",
+      "Fujii Kaze",
+      "平沢進+会人",
+      "Hi-STANDARD",
+      "TOMORA",
+      "MITSKI",
+      "TURNSTILE",
+      "BASEMENT JAXX",
+      "MOGWAI",
+      "ARLO PARKS",
+      "BADBADNOTGOOD",
+      "AMERICAN FOOTBALL",
+      "HYUKOH",
+      "サニーデイ・サービス",
+      "never young beach",
+      "LETTUCE",
+      "XG",
+      "Tempalay"
+    ],
+    "presetArtists2026": [
+      "The xx",
+      "KHRUANGBIN",
+      "MASSIVE ATTACK",
+      "ASIAN KUNG-FU GENERATION",
+      "Fujii Kaze",
+      "平沢進+会人",
+      "Hi-STANDARD",
+      "TOMORA",
+      "MITSKI",
+      "TURNSTILE",
+      "BASEMENT JAXX",
+      "MOGWAI",
+      "ARLO PARKS",
+      "BADBADNOTGOOD",
+      "AMERICAN FOOTBALL",
+      "HYUKOH",
+      "サニーデイ・サービス",
+      "never young beach",
+      "LETTUCE",
+      "XG",
+      "Tempalay"
+    ]
+  }
+}
