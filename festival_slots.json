@@ -1,6 +1,9 @@
 {
   "summerSonic": {
     "name": "SUMMER SONIC TOKYO",
+    "timelineStartByDay": {
+      "Friday 15th August": "22:00"
+    },
     "years": {
       "2024": {
         "days": [
@@ -584,6 +587,7 @@
       },
       "2025": {
         "days": [
+          "Friday 15th August",
           "Saturday 16th August",
           "Sunday 17th August"
         ],
@@ -597,6 +601,24 @@
         ],
         "slotsMap": {
           "Mountain": {
+            "Friday 15th August": [
+              [
+                "22:00",
+                "22:50"
+              ],
+              [
+                "23:35",
+                "00:50"
+              ],
+              [
+                "01:35",
+                "02:50"
+              ],
+              [
+                "03:30",
+                "04:30"
+              ]
+            ],
             "Saturday 16th August": [
               [
                 "11:30",
@@ -667,6 +689,28 @@
             ]
           },
           "Sonic": {
+            "Friday 15th August": [
+              [
+                "22:15",
+                "23:15"
+              ],
+              [
+                "23:45",
+                "00:30"
+              ],
+              [
+                "01:00",
+                "01:45"
+              ],
+              [
+                "02:25",
+                "03:25"
+              ],
+              [
+                "03:55",
+                "04:40"
+              ]
+            ],
             "Saturday 16th August": [
               [
                 "11:00",
@@ -745,6 +789,28 @@
             ]
           },
           "Pacific": {
+            "Friday 15th August": [
+              [
+                "22:45",
+                "23:25"
+              ],
+              [
+                "23:55",
+                "00:35"
+              ],
+              [
+                "01:05",
+                "01:45"
+              ],
+              [
+                "02:15",
+                "03:15"
+              ],
+              [
+                "03:45",
+                "04:35"
+              ]
+            ],
             "Saturday 16th August": [
               [
                 "10:30",
@@ -1326,6 +1392,7 @@
       "default": "https://www.summersonic.com/2025/en/tt/tokyo-day1/",
       "years": {
         "2025": {
+          "Friday 15th August": "https://www.summersonic.com/2025/en/tt/tokyo-day1/",
           "Saturday 16th August": "https://www.summersonic.com/2025/en/tt/tokyo-day1/",
           "Sunday 17th August": "https://www.summersonic.com/2025/en/tt/tokyo-day2/"
         }
@@ -1880,7 +1947,7 @@
     ],
     "stageColors": {
       "Green Stage": "#2f9e44",
-      "White Stage": "#f1f3f5",
+      "White Stage": "#c8ced6",
       "Red Marquee": "#e03131",
       "Field of Heaven": "#0ca678"
     },

@@ -1,6 +1,10 @@
 const STORAGE_KEY = "fesTimeBuilder_board_v8_mobile_timeedit_stageorder";
 const APP_NAME = "妄想タイムテーブル";
 const DISPLAY_YEAR = "2026";
+const FESTIVAL_LABELS = {
+  summerSonic: "サマソニ",
+  fujiRock: "フジロック"
+};
 
 const state = {
   festivals: null,
@@ -36,6 +40,7 @@ const el = {
   poolDropZone: document.getElementById("poolDropZone"),
   pool: document.getElementById("pool"),
   board: document.getElementById("board"),
+  resetTimeBtn: document.getElementById("resetTimeBtn"),
   exportImageBtn: document.getElementById("exportImageBtn")
 };
 
@@ -196,6 +201,12 @@ function normalizeMinuteByAnchor(minute, anchor) {
 }
 
 function getTimelineAnchorMinute(daySlots) {
+  const byDay = getFestival().timelineStartByDay;
+  const dayConfigured = byDay?.[state.dayFilter];
+  if (isValidClock(dayConfigured)) {
+    return toMinutes(dayConfigured);
+  }
+
   const configured = getFestival().timelineStart;
   if (isValidClock(configured)) {
     return toMinutes(configured);
@@ -298,7 +309,7 @@ function fillFestivalOptions() {
   Object.entries(state.festivals).forEach(([key, data], idx) => {
     const option = document.createElement("option");
     option.value = key;
-    option.textContent = data.uiLabel || `プラン ${idx + 1}`;
+    option.textContent = FESTIVAL_LABELS[key] || data.uiLabel || `フェス ${idx + 1}`;
     el.festival.append(option);
   });
   el.festival.value = state.festivalKey;
@@ -1000,22 +1011,11 @@ function renderBoard() {
     stageName.textContent = meta.title;
     stageNameWrap.append(stageName);
 
-    if (meta.subtitle) {
-      const stageSubtitle = document.createElement("p");
-      stageSubtitle.className = "stageLaneSubtitle";
-      stageSubtitle.textContent = meta.subtitle;
-      stageNameWrap.append(stageSubtitle);
-    }
-
-    const stageVenue = document.createElement("p");
-    stageVenue.className = "stageLaneVenue";
-    stageVenue.textContent = meta.venue || "";
-
     const stageAccent = document.createElement("div");
     stageAccent.className = "stageLaneAccent";
     stageAccent.style.background = stageColor;
 
-    stageHead.append(stageDot, stageNameWrap, stageVenue, stageAccent);
+    stageHead.append(stageDot, stageNameWrap, stageAccent);
     attachStageReorderEvents(stageCol, stageHead, stage);
 
     const laneBody = document.createElement("div");
@@ -1139,6 +1139,19 @@ function resetPlacement() {
   renderAll();
 }
 
+function resetSlotTimes() {
+  const prefix = `${state.festivalKey}__${state.yearKey}__`;
+  let changed = 0;
+  for (const key of Object.keys(state.slotOverrides)) {
+    if (!key.startsWith(prefix)) continue;
+    delete state.slotOverrides[key];
+    changed += 1;
+  }
+
+  setMessage(changed > 0 ? `時間を初期値に戻した: ${changed}枠` : "時間変更はなし");
+  renderAll();
+}
+
 function switchFestival(key) {
   state.festivalKey = key;
   const years = Object.keys(getFestival().years).sort((a, b) => Number(b) - Number(a));
@@ -1248,9 +1261,7 @@ function exportBoardImage() {
   const leftPad = 18;
   const rightPad = 18;
   const axisW = 52;
-  const headTopH = 76;
-  const venueH = 20;
-  const openLineH = 16;
+  const headTopH = 68;
   const headBottomH = 10;
   const topPad = 16;
   const bottomPad = 20;
@@ -1259,7 +1270,7 @@ function exportBoardImage() {
 
   const gridX = leftPad + axisW;
   const gridW = stages.length * colWidth;
-  const bodyTop = topPad + headTopH + venueH + openLineH + headBottomH;
+  const bodyTop = topPad + headTopH + headBottomH;
   const width = leftPad + axisW + gridW + axisW + rightPad;
   const height = bodyTop + bodyHeight + bottomPad;
 
@@ -1285,12 +1296,10 @@ function exportBoardImage() {
 
   ctx.fillStyle = "#f4f6f8";
   ctx.fillRect(gridX, topPad, gridW, headTopH);
-  ctx.fillStyle = "#eef1f4";
-  ctx.fillRect(gridX, topPad + headTopH, gridW, venueH);
   ctx.fillStyle = "#00b8d9";
-  ctx.fillRect(gridX, topPad + headTopH + venueH + 2, gridW, 4);
+  ctx.fillRect(gridX, topPad + headTopH + 2, gridW, 4);
   ctx.fillStyle = "#e8ecef";
-  ctx.fillRect(gridX, topPad + headTopH + venueH + openLineH, gridW, headBottomH);
+  ctx.fillRect(gridX, topPad + headTopH, gridW, headBottomH);
   ctx.strokeRect(gridX, topPad, gridW, bodyTop - topPad);
 
   stages.forEach((stage, i) => {
@@ -1318,17 +1327,7 @@ function exportBoardImage() {
     ctx.fillStyle = "#202327";
     ctx.font = "bold 11px 'Hiragino Sans', 'Yu Gothic', sans-serif";
     ctx.textAlign = "center";
-    drawWrappedCenterText(ctx, meta.title, centerX, topPad + 41, colWidth - 12, 12, 2);
-
-    if (meta.subtitle) {
-      ctx.fillStyle = "#58606a";
-      ctx.font = "9px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-      ctx.fillText(meta.subtitle, centerX, topPad + 67, colWidth - 10);
-    }
-
-    ctx.fillStyle = "#4f5b68";
-    ctx.font = "9px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-    ctx.fillText(meta.venue || "", centerX, topPad + headTopH + 13, colWidth - 8);
+    drawWrappedCenterText(ctx, meta.title, centerX, topPad + 42, colWidth - 12, 12, 2);
 
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(x, bodyTop, colWidth, bodyHeight);
@@ -1432,6 +1431,7 @@ function attachEvents() {
     event.preventDefault();
     buildPoolFromInput();
   });
+  el.resetTimeBtn.addEventListener("click", resetSlotTimes);
   el.exportImageBtn.addEventListener("click", exportBoardImage);
 
   attachPoolDropEvents();
