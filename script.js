@@ -1,4 +1,8 @@
-const STORAGE_KEY = "fesTimeBuilder_board_v7_mobile_timeedit";
+const STORAGE_KEY = "fesTimeBuilder_board_v8_mobile_timeedit_stageorder";
+
+const DEFAULT_STAGE_ORDER = {
+  summerSonic: ["Marine", "Beach", "Mountain", "Sonic", "Spotify Early Noise", "Pacific"]
+};
 
 const STAGE_COLORS = {
   summerSonic: {
@@ -120,10 +124,14 @@ function getStageOrderKey() {
 function getOrderedStages() {
   const key = getStageOrderKey();
   const base = getYearData().stages;
+  const preferred = Array.isArray(DEFAULT_STAGE_ORDER[state.festivalKey])
+    ? DEFAULT_STAGE_ORDER[state.festivalKey].filter((stage) => base.includes(stage))
+    : [];
+  const defaultOrder = [...preferred, ...base.filter((stage) => !preferred.includes(stage))];
   const stored = Array.isArray(state.stageOrders[key]) ? state.stageOrders[key] : [];
   const filtered = stored.filter((stage) => base.includes(stage));
-  const missing = base.filter((stage) => !filtered.includes(stage));
-  const ordered = [...filtered, ...missing];
+  const missing = defaultOrder.filter((stage) => !filtered.includes(stage));
+  const ordered = filtered.length > 0 ? [...filtered, ...missing] : defaultOrder;
   state.stageOrders[key] = ordered;
   return ordered;
 }

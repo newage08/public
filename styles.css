@@ -350,6 +350,7 @@ textarea {
   min-height: 14px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   flex-wrap: nowrap;
   overflow: hidden;
@@ -357,7 +358,15 @@ textarea {
 
 .slotPlaceholder {
   color: #9a907f;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
+  line-height: 1;
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.02em;
 }
 
 .dayBanner {
