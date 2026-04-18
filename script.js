@@ -4,6 +4,17 @@ const DEFAULT_STAGE_ORDER = {
   summerSonic: ["Marine", "Beach", "Mountain", "Sonic", "Spotify Early Noise", "Pacific"]
 };
 
+const STAGE_META = {
+  summerSonic: {
+    Marine: { title: "MARINE STAGE", venue: "ZOZO MARINE STADIUM" },
+    Beach: { title: "BEACH STAGE", venue: "MAKUHARI BEACH" },
+    Mountain: { title: "MOUNTAIN STAGE", venue: "MAKUHARI MESSE No.1-2" },
+    Sonic: { title: "SONIC STAGE", venue: "MAKUHARI MESSE No.7" },
+    "Spotify Early Noise": { title: "SPOTIFY STAGE", subtitle: "[RADAR: Early Noise Special]", venue: "MAKUHARI MESSE No.6" },
+    Pacific: { title: "PACIFIC STAGE", venue: "MAKUHARI MESSE No.9" }
+  }
+};
+
 const STAGE_COLORS = {
   summerSonic: {
     Marine: "#2aa8d6",
@@ -926,11 +937,6 @@ function renderBoard() {
       if (state.assignments[id]) {
         const tag = makeTag(state.assignments[id], id);
         body.append(tag);
-      } else {
-        const placeholder = document.createElement("div");
-        placeholder.className = "slotPlaceholder";
-        placeholder.textContent = "DROP";
-        body.append(placeholder);
       }
 
       slotNode.append(time, body);
@@ -1071,6 +1077,37 @@ function restoreStateIfExists() {
   }
 }
 
+function getStageMeta(stage) {
+  const data = STAGE_META[state.festivalKey]?.[stage];
+  if (data) return data;
+  return { title: `${stage.toUpperCase()} STAGE`, venue: "" };
+}
+
+function drawWrappedCenterText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2) {
+  const words = String(text || "").split(/\s+/).filter(Boolean);
+  if (words.length === 0) return 0;
+
+  const lines = [];
+  let line = "";
+  words.forEach((word) => {
+    const next = line ? `${line} ${word}` : word;
+    if (ctx.measureText(next).width <= maxWidth || line.length === 0) {
+      line = next;
+      return;
+    }
+    lines.push(line);
+    line = word;
+  });
+  if (line) lines.push(line);
+
+  const usedLines = lines.slice(0, maxLines);
+  usedLines.forEach((item, idx) => {
+    ctx.fillText(item, x, y + idx * lineHeight, maxWidth);
+  });
+
+  return usedLines.length;
+}
+
 function exportBoardImage() {
   const yearData = getYearData();
   const daySlots = sortSlots(
@@ -1082,89 +1119,167 @@ function exportBoardImage() {
   const timeline = buildTimelineData(daySlots);
   const stages = getOrderedStages();
 
-  const colWidth = 290;
-  const stageGap = 14;
-  const leftPad = 26;
-  const axisW = 78;
-  const topPad = 96;
-  const headerH = 36;
-  const bottomPad = 28;
-  const pxPerMinute = 1.2;
+  const scale = 2;
+  const colWidth = 182;
+  const leftPad = 18;
+  const rightPad = 18;
+  const axisW = 52;
+  const headTopH = 76;
+  const venueH = 20;
+  const openLineH = 16;
+  const headBottomH = 10;
+  const topPad = 16;
+  const bottomPad = 20;
+  const pxPerMinute = 1.05;
   const bodyHeight = Math.ceil((timeline.maxMinute - timeline.minMinute) * pxPerMinute);
 
-  const width = leftPad * 2 + axisW + stages.length * colWidth + (stages.length - 1) * stageGap;
-  const height = topPad + headerH + bodyHeight + bottomPad;
+  const gridX = leftPad + axisW;
+  const gridW = stages.length * colWidth;
+  const bodyTop = topPad + headTopH + venueH + openLineH + headBottomH;
+  const width = leftPad + axisW + gridW + axisW + rightPad;
+  const height = bodyTop + bodyHeight + bottomPad;
 
   const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
+  canvas.width = width * scale;
+  canvas.height = height * scale;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
   const ctx = canvas.getContext("2d");
+  ctx.scale(scale, scale);
 
-  ctx.fillStyle = "#f8f4e9";
+  ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, width, height);
+  ctx.strokeStyle = "#cfd3d9";
+  ctx.lineWidth = 1;
 
-  ctx.fillStyle = "#202020";
-  ctx.font = "bold 28px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-  ctx.fillText(`${getFestival().name} ${state.yearKey}`, leftPad, 36);
-  ctx.font = "18px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-  ctx.fillText(state.dayFilter, leftPad, 62);
+  ctx.fillStyle = "#16181a";
+  ctx.font = "bold 18px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+  ctx.fillText(`${getFestival().name} ${state.yearKey}`, leftPad, 16);
+  ctx.font = "12px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+  ctx.fillStyle = "#444";
+  ctx.fillText(state.dayFilter, leftPad, 34);
 
-  const gridX = leftPad + axisW;
-  const gridY = topPad + headerH;
-
-  ctx.strokeStyle = "#d6c6ad";
-  ctx.fillStyle = "#6a604f";
-  ctx.font = "13px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-  for (let m = timeline.minMinute; m <= timeline.maxMinute; m += 60) {
-    const y = gridY + (m - timeline.minMinute) * pxPerMinute;
-    ctx.beginPath();
-    ctx.moveTo(leftPad + 2, y);
-    ctx.lineTo(width - leftPad, y);
-    ctx.stroke();
-    ctx.fillText(formatClock(m), leftPad + 4, y - 3);
-  }
+  ctx.fillStyle = "#f4f6f8";
+  ctx.fillRect(gridX, topPad, gridW, headTopH);
+  ctx.fillStyle = "#eef1f4";
+  ctx.fillRect(gridX, topPad + headTopH, gridW, venueH);
+  ctx.fillStyle = "#00b8d9";
+  ctx.fillRect(gridX, topPad + headTopH + venueH + 2, gridW, 4);
+  ctx.fillStyle = "#e8ecef";
+  ctx.fillRect(gridX, topPad + headTopH + venueH + openLineH, gridW, headBottomH);
+  ctx.strokeRect(gridX, topPad, gridW, bodyTop - topPad);
 
   stages.forEach((stage, i) => {
     const stageColor = getStageColor(stage, i);
-    const x = gridX + i * (colWidth + stageGap);
-    const y = topPad;
+    const meta = getStageMeta(stage);
+    const x = gridX + i * colWidth;
+    const centerX = x + colWidth / 2;
+    const iconY = topPad + 22;
 
-    ctx.fillStyle = stageColor;
-    ctx.fillRect(x, y, colWidth, headerH);
-    ctx.fillStyle = stageColor.toLowerCase() === "#f1f3f5" ? "#1f2328" : "#ffffff";
-    ctx.font = "bold 17px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-    ctx.fillText(stage, x + 10, y + 24, colWidth - 16);
+    if (i > 0) {
+      ctx.strokeStyle = "#d5dbe1";
+      ctx.beginPath();
+      ctx.moveTo(x, topPad);
+      ctx.lineTo(x, bodyTop + bodyHeight);
+      ctx.stroke();
+    }
 
-    ctx.fillStyle = "#fffaf0";
-    ctx.fillRect(x, gridY, colWidth, bodyHeight);
-    ctx.strokeStyle = "#cfbca0";
-    ctx.strokeRect(x, gridY, colWidth, bodyHeight);
+    ctx.strokeStyle = stageColor;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(centerX, iconY, 10, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.lineWidth = 1;
+
+    ctx.fillStyle = "#202327";
+    ctx.font = "bold 11px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+    ctx.textAlign = "center";
+    drawWrappedCenterText(ctx, meta.title, centerX, topPad + 41, colWidth - 12, 12, 2);
+
+    if (meta.subtitle) {
+      ctx.fillStyle = "#58606a";
+      ctx.font = "9px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+      ctx.fillText(meta.subtitle, centerX, topPad + 67, colWidth - 10);
+    }
+
+    ctx.fillStyle = "#4f5b68";
+    ctx.font = "9px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+    ctx.fillText(meta.venue || "", centerX, topPad + headTopH + 13, colWidth - 8);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(x, bodyTop, colWidth, bodyHeight);
+    ctx.strokeStyle = "#d9dde3";
+    ctx.strokeRect(x, bodyTop, colWidth, bodyHeight);
 
     const stageSlots = timeline.slots
       .filter((slot) => slot.stage === stage)
       .sort((a, b) => a._startN - b._startN);
 
     stageSlots.forEach((slot) => {
-      const sy = gridY + (slot._startN - timeline.minMinute) * pxPerMinute;
+      const sy = bodyTop + (slot._startN - timeline.minMinute) * pxPerMinute;
       const sh = Math.max(28, (slot._endN - slot._startN) * pxPerMinute);
       const id = slot._slotId || slotId(slot);
       const artist = state.assignments[id]?.name || "";
 
-      ctx.fillStyle = toRgba(stageColor, 0.24);
-      ctx.strokeStyle = toRgba(stageColor, 0.68);
+      ctx.fillStyle = artist ? toRgba(stageColor, 0.9) : "#f3f5f8";
+      ctx.strokeStyle = artist ? toRgba(stageColor, 1) : "#dfe4ea";
       ctx.lineWidth = 1;
-      ctx.fillRect(x + 4, sy, colWidth - 8, sh);
-      ctx.strokeRect(x + 4, sy, colWidth - 8, sh);
+      ctx.fillRect(x + 2, sy, colWidth - 4, sh);
+      ctx.strokeRect(x + 2, sy, colWidth - 4, sh);
 
-      ctx.fillStyle = "#665d50";
-      ctx.font = "13px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-      ctx.fillText(`${slot.start}-${slot.end}`, x + 10, sy + 15);
+      ctx.fillStyle = artist ? "#0f1113" : "#8e96a1";
+      ctx.font = "9px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+      ctx.textAlign = "left";
+      ctx.fillText(slot.start, x + 7, sy + 11);
 
-      ctx.fillStyle = artist ? "#1f1f1f" : "#9d9487";
-      ctx.font = "bold 14px 'Hiragino Sans', 'Yu Gothic', sans-serif";
-      ctx.fillText(artist || "(空欄)", x + 10, sy + 33, colWidth - 20);
+      if (artist) {
+        ctx.fillStyle = "#0f1113";
+        ctx.font = "bold 12px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+        const maxW = colWidth - 14;
+        const maxLines = sh >= 62 ? 3 : sh >= 44 ? 2 : 1;
+        const lineHeight = 12;
+        const baseY = sy + 24;
+        const words = artist.split(/\s+/).filter(Boolean);
+        let line = "";
+        const lines = [];
+        words.forEach((word) => {
+          const next = line ? `${line} ${word}` : word;
+          if (ctx.measureText(next).width <= maxW || line.length === 0) {
+            line = next;
+            return;
+          }
+          lines.push(line);
+          line = word;
+        });
+        if (line) lines.push(line);
+        lines.slice(0, maxLines).forEach((l, idx) => {
+          ctx.fillText(l, x + 7, baseY + idx * lineHeight, maxW);
+        });
+      }
     });
   });
+
+  ctx.strokeStyle = "#d5dbe1";
+  ctx.beginPath();
+  ctx.moveTo(gridX + gridW, topPad);
+  ctx.lineTo(gridX + gridW, bodyTop + bodyHeight);
+  ctx.stroke();
+
+  const leftAxisX = leftPad;
+  const rightAxisX = gridX + gridW + 6;
+  ctx.fillStyle = "#697380";
+  ctx.font = "10px 'Hiragino Sans', 'Yu Gothic', sans-serif";
+  ctx.textAlign = "left";
+  for (let m = timeline.minMinute; m <= timeline.maxMinute; m += 60) {
+    const y = bodyTop + (m - timeline.minMinute) * pxPerMinute;
+    ctx.strokeStyle = "#e1e6ed";
+    ctx.beginPath();
+    ctx.moveTo(gridX, y);
+    ctx.lineTo(gridX + gridW, y);
+    ctx.stroke();
+    ctx.fillText(formatClock(m), leftAxisX, y + 3);
+    ctx.fillText(formatClock(m), rightAxisX, y + 3);
+  }
 
   canvas.toBlob((blob) => {
     if (!blob) {
