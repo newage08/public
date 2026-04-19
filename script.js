@@ -1530,9 +1530,7 @@ async function init() {
       state.dayFilter = getYearData().days[0];
     }
     fillDayOptions();
-    if (!restored) {
-      loadPresetCandidates({ rebuildPool: true, notice: false, resetAssignments: true });
-    }
+    loadPresetCandidates({ rebuildPool: true, notice: false, resetAssignments: false });
     if (el.yearLabel) {
       el.yearLabel.style.display = "none";
     }
