@@ -1,4 +1,4 @@
-const STORAGE_KEY = "fesTimeBuilder_board_v8_mobile_timeedit_stageorder";
+const STORAGE_KEY = "fesTimeBuilder_board_v9_mobile_timeedit_stageorder";
 const APP_NAME = "妄想タイムテーブル";
 const DISPLAY_YEAR = "2026";
 const FESTIVAL_LABELS = {
