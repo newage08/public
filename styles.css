@@ -98,6 +98,18 @@ button:hover {
   filter: brightness(1.03);
 }
 
+#timeEditToggle {
+  background: #eef2f7;
+  color: #26374c;
+  border-color: #c6d2e2;
+}
+
+#timeEditToggle.isOn {
+  background: linear-gradient(180deg, #1f7be8, #0f62c8);
+  color: #fafdff;
+  border-color: #2f78cb;
+}
+
 .quickAddForm {
   display: inline-grid;
   grid-template-columns: minmax(140px, 220px) auto;
@@ -360,6 +372,11 @@ button:hover {
   width: auto;
   padding: 0;
   color: inherit;
+}
+
+.slotTimeButton.isLocked {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .slotBody {

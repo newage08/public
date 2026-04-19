@@ -11,6 +11,7 @@ const state = {
   festivalKey: "summerSonic",
   yearKey: "",
   dayFilter: "",
+  timeEditEnabled: false,
   pool: [],
   assignments: {},
   stageOrders: {},
@@ -40,6 +41,7 @@ const el = {
   poolDropZone: document.getElementById("poolDropZone"),
   pool: document.getElementById("pool"),
   board: document.getElementById("board"),
+  timeEditToggle: document.getElementById("timeEditToggle"),
   resetTimeBtn: document.getElementById("resetTimeBtn"),
   exportImageBtn: document.getElementById("exportImageBtn")
 };
@@ -856,7 +858,31 @@ function setSlotOverride(slotKey, start, end) {
   state.slotOverrides[slotKey] = { start, end };
 }
 
+function updateTimeEditToggle() {
+  if (!el.timeEditToggle) return;
+  const enabled = Boolean(state.timeEditEnabled);
+  el.timeEditToggle.setAttribute("aria-pressed", enabled ? "true" : "false");
+  el.timeEditToggle.classList.toggle("isOn", enabled);
+  el.timeEditToggle.textContent = enabled ? "時間編集ON" : "時間編集OFF";
+}
+
+function setTimeEditEnabled(enabled, { notice = true, rerender = true } = {}) {
+  state.timeEditEnabled = Boolean(enabled);
+  updateTimeEditToggle();
+  if (notice) {
+    setMessage(state.timeEditEnabled ? "時間編集をONにした" : "時間編集をOFFにした");
+  }
+  if (rerender) {
+    renderAll();
+  }
+}
+
 function promptSlotTime(slot) {
+  if (!state.timeEditEnabled) {
+    setMessage("時間編集をONにしてから変更して");
+    return;
+  }
+
   const startInput = window.prompt("開始時間を入力 (HH:MM)", slot.start);
   if (startInput == null) return;
 
@@ -908,6 +934,10 @@ function attachSlotTimeDragEvents(slotNode, slot, timeline, pxPerMinute, timeBut
     if (event.button !== undefined && event.button !== 0) return;
     if (event.target.closest(".artistTag")) return;
     if (event.target.closest(".slotTimeButton")) return;
+    if (!state.timeEditEnabled) {
+      setMessage("時間編集をONにしてから変更して");
+      return;
+    }
 
     const startMinute = toMinutes(slot.start);
     const endMinute = toMinutes(slot.end);
@@ -1076,15 +1106,23 @@ function renderBoard() {
       slotNode.style.height = `${Math.max(42, (slot._endN - slot._startN) * pxPerMinute)}px`;
       slotNode.style.borderColor = colors.border;
       slotNode.style.background = colors.background;
+      slotNode.style.touchAction = state.timeEditEnabled ? "none" : "auto";
 
       const time = document.createElement("button");
       time.type = "button";
       time.className = "slotTime slotTimeButton";
+      time.classList.toggle("isLocked", !state.timeEditEnabled);
       time.textContent = slot.start;
-      time.title = "タップで時刻入力 / 枠を上下ドラッグで時刻移動";
+      time.title = state.timeEditEnabled
+        ? "タップで時刻入力 / 枠を上下ドラッグで時刻移動"
+        : "時間編集OFF（上部トグルでON）";
       time.style.color = colors.time;
       time.addEventListener("click", (event) => {
         event.stopPropagation();
+        if (!state.timeEditEnabled) {
+          setMessage("時間編集をONにしてから変更して");
+          return;
+        }
         promptSlotTime(slot);
       });
 
@@ -1200,6 +1238,7 @@ function saveStateSilently() {
     festivalKey: state.festivalKey,
     yearKey: state.yearKey,
     dayFilter: state.dayFilter,
+    timeEditEnabled: state.timeEditEnabled,
     pool: state.pool,
     assignments: state.assignments,
     stageOrders: state.stageOrders,
@@ -1227,6 +1266,7 @@ function restoreStateIfExists() {
 
     state.dayFilter = parsed.dayFilter || getYearData().days[0];
     fillDayOptions();
+    state.timeEditEnabled = Boolean(parsed.timeEditEnabled);
 
     state.pool = Array.isArray(parsed.pool) ? parsed.pool : [];
     state.assignments = parsed.assignments && typeof parsed.assignments === "object" ? parsed.assignments : {};
@@ -1454,6 +1494,9 @@ function attachEvents() {
     state.dayFilter = el.dayFilter.value;
     loadPresetCandidates({ rebuildPool: true, notice: true, resetAssignments: false });
   });
+  el.timeEditToggle.addEventListener("click", () => {
+    setTimeEditEnabled(!state.timeEditEnabled, { notice: true, rerender: true });
+  });
 
   el.quickAddForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -1474,7 +1517,9 @@ async function init() {
     const restored = restoreStateIfExists();
     if (!restored) {
       state.dayFilter = getYearData().days[0];
+      state.timeEditEnabled = false;
     }
+    updateTimeEditToggle();
     fillDayOptions();
     loadPresetCandidates({ rebuildPool: true, notice: false, resetAssignments: false });
     if (el.yearLabel) {
