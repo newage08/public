@@ -274,63 +274,9 @@ function createArtist(name) {
   return { id: `${Date.now()}_${Math.random().toString(36).slice(2, 9)}`, name: String(name || "").trim() };
 }
 
-function normalizeArtistKey(name) {
-  return String(name || "")
-    .normalize("NFKC")
-    .toLowerCase()
-    .replace(/[\s\u3000]+/g, "")
-    .replace(/[’'`"“”\-_.!?:&／/|・,()[\]{}]/g, "");
-}
-
-function get2026DayPresetArtists() {
-  const festival = getFestival();
-  const yearData = getYearData();
-  const baseArtists = Array.isArray(festival.presetArtists2026) ? festival.presetArtists2026 : null;
-  if (!baseArtists || baseArtists.length === 0) return null;
-
-  const days = Array.isArray(yearData.days) ? yearData.days : [];
-  if (days.length === 0) return baseArtists;
-
-  const announcedByDay = yearData.presetArtistsByDay;
-  if (!announcedByDay || typeof announcedByDay !== "object") {
-    return baseArtists;
-  }
-
-  const dayKeySets = Object.fromEntries(
-    days.map((day) => [
-      day,
-      new Set(
-        Array.isArray(announcedByDay[day])
-          ? announcedByDay[day].map((name) => normalizeArtistKey(name)).filter(Boolean)
-          : []
-      )
-    ])
-  );
-
-  const buckets = Object.fromEntries(days.map((day) => [day, []]));
-  let rrIndex = 0;
-  baseArtists.forEach((artist) => {
-    const key = normalizeArtistKey(artist);
-    const matchedDays = days.filter((day) => dayKeySets[day]?.has(key));
-    if (matchedDays.length === 1) {
-      buckets[matchedDays[0]].push(artist);
-      return;
-    }
-
-    const day = days[rrIndex % days.length];
-    buckets[day].push(artist);
-    rrIndex += 1;
-  });
-
-  return Array.isArray(buckets[state.dayFilter]) ? buckets[state.dayFilter] : baseArtists;
-}
-
 function getDayPresetArtists() {
   const festival = getFestival();
   const yearData = getYearData();
-  const day2026 = get2026DayPresetArtists();
-  if (Array.isArray(day2026) && day2026.length > 0) return day2026;
-
   const dayMap = yearData.presetArtistsByDay || festival.presetArtistsByDay;
   const dayArtists = dayMap?.[state.dayFilter];
   if (Array.isArray(dayArtists) && dayArtists.length > 0) return dayArtists;
